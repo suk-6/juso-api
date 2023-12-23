@@ -80,6 +80,18 @@ class db:
             print(data)
             raise e
 
+    def getDataOfID(self, id):
+        self.cur.execute(f"SELECT * FROM juso WHERE id=?", (id,))
+        return self.cur.fetchone()
+
+    def getPositions(self):
+        self.cur.execute(f"SELECT id, center_x, center_y FROM juso")
+        return self.cur.fetchall()
+
+    def getAll(self):
+        self.cur.execute(f"SELECT * FROM juso")
+        return self.cur.fetchall()
+
 
 if __name__ == "__main__":
-    db("seoul").initDB()
+    dbconn = db("seoul")
